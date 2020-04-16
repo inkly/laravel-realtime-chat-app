@@ -8,7 +8,7 @@ export const getHeader = function ()
 	return headers
 }
 
-export const baseUrl = "http://127.0.0.1:8000/api";
+export const baseUrl = "api";
 export const socketPORT = "6999"
 
 export const getUsers = baseUrl + "/users"
