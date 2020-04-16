@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Chat;
 use Illuminate\Http\Request;
-use RedisBis;
+use Illuminate\Support\Facades\Redis AS RedisBis;
 
 class UserController extends Controller
 {
