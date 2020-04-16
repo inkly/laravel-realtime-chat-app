@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $user = User::firstOrCreate($request->all());
         
-        $redis = RedisL::connection();
+        $redis = Redis::connection();
         $redis->publish('new_user_joined_event', User::get());
 
         return response()->json($user, 200);
@@ -28,7 +28,7 @@ class UserController extends Controller
     public function saveMessage(Request $request)
     {
         Chat::create($request->all());
-        $redis = RedisL::connection();
+        $redis = Redis::connection();
         $redis->publish('new_chat_sent', json_encode($request->all()));
         return $request->all();
     }
