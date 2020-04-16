@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Chat;
 use Illuminate\Http\Request;
-use Redis;
+use RedisL;
 
 class UserController extends Controller
 {
@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $user = User::firstOrCreate($request->all());
         
-        $redis = Redis::connection();
+        $redis = RedisL::connection();
         $redis->publish('new_user_joined_event', User::get());
 
         return response()->json($user, 200);
@@ -28,7 +28,7 @@ class UserController extends Controller
     public function saveMessage(Request $request)
     {
         Chat::create($request->all());
-        $redis = Redis::connection();
+        $redis = RedisL::connection();
         $redis->publish('new_chat_sent', json_encode($request->all()));
         return $request->all();
     }
